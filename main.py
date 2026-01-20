@@ -43,14 +43,20 @@ class LanguageBinaryNFA:
 
 # Enter value for even k
 
-print("Please enter an even integer greater than or equal to 2 for k (currently supported k=4,6,8):")
+print("Please enter an even integer greater than or equal to 2 for k (currently supported k=2,4,6,8):")
 k = int(input().strip())
 nfa = LanguageBinaryNFA(k)
 
 
-## Provided test cases for k=4,6,8 ##
+## Provided test cases for k=2,4,6,8 ##
 
 test_cases = [ ## test_str, expected_bool, description, test_k ## 
+    # k=2 test cases
+    ("000", True, "k=2: w=00, suffix=0", 2),
+    ("111", True, "k=2: w=11, suffix=1", 2),
+    ("010", False, "k=2: w=01, suffix=0 (wrong! suffix should be 1)", 2),
+
+    
     # k=4 test cases
     ("011111", True, "k=4: w=0111, suffix=11 (positions 2,4 are 1,1)", 4),
     ("100000", True, "k=4: w=1000, suffix=00 (positions 2,4 are 0,0)", 4),
@@ -69,7 +75,7 @@ test_cases = [ ## test_str, expected_bool, description, test_k ##
 print(f"\nTesting provided test cases with k={k}:\n")
 matching_tests = [t for t in test_cases if t[3] == k]
 if not matching_tests:
-    print(f"No test cases available for k={k}. Try k=4, 6, or 8.")
+    print(f"No test cases available for k={k}. Try k=2, 4, 6, or 8.")
 else:
     for test_str, expected, description, test_k in matching_tests:
         result = nfa.accepts(test_str)
@@ -81,14 +87,20 @@ print(f"\nEnter a custom string w to test k={k} (or press Enter to skip):")
 custom_w = input().strip()
 if custom_w:
     # Compute expected suffix
-    if len(custom_w) >= k:
-        expected_suffix = ''.join(custom_w[i-1] for i in range(2, k+1, 2))
-        full_string = custom_w + expected_suffix
-        print(f"For w='{custom_w}', expected full string: '{full_string}'")
-        result = nfa.accepts(full_string)
-        print(f"Result: {'ACCEPTED' if result else 'REJECTED'}")
+    char = ''
+    if any(char not in '01' for char in custom_w):
+        print("Input string must be binary (only '0' and '1').")
     else:
-        print(f"w must be at least length {k}.")
+        
+        if len(custom_w) >= k:
+            expected_suffix = ''.join(custom_w[i-1] for i in range(2, k+1, 2))
+            full_string = custom_w + expected_suffix
+            print(f"For w='{custom_w}', expected full string: '{full_string}'")
+            result = nfa.accepts(full_string)
+            print(f"Result: {'ACCEPTED' if result else 'REJECTED'}")
+        else:
+            print(f"w must be at least length {k}.")
+    
 
 
 
