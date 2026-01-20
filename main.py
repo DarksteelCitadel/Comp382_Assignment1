@@ -1,7 +1,8 @@
 class LanguageBNFA:
-    def init(self, k):
+    def __init__(self, k):
         if k % 2 != 0 or k < 2:
-            raise ValueError("k must be an even integer ≥ 2")
+            print("k must be an even integer greater than or equal to 2.")
+            raise ValueError("Invalid value for k.")
         self.k = k
 
     def accepts(self, input_string):
@@ -39,10 +40,9 @@ class LanguageBNFA:
         return False
 
 
------------------------
-Example usage
------------------------
-nfa = LanguageBNFA(k=4)
+print("Please enter an even integer greater than or equal to 2 for k:")
+k = int(input().strip())
+nfa = LanguageBNFA(k)
 
 tests = [
     "011111",  # w=0111, suffix=11 -> accept
