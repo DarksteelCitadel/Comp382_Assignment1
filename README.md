@@ -14,6 +14,8 @@ Prasoon and I decided to write a Python program to prove regularity among variou
 
 * Wrote report in LaTeX, illustrating the Binary NFA State Diagram for Language B in the general case and involving step-by-step logic and explanation of the NFA.
 
+* Wrote formal 5-tuple definition, as well as design choices and justification.
+
 * Revised Prasoon's initial Python Binary Non-Deterministic Finite Automaton implementation.
 
 * Included test cases for even values of k (program accepts k = 2, 4, 6, 8).
