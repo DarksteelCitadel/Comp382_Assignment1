@@ -22,6 +22,8 @@ Prasoon and I decided to write a Python program to prove regularity among variou
 
 * Incorporated user option of inputting a custom binary string, concatenates the proper suffix, and returns the appropriate accepted string. As there is much room for error here, I implemented error handling for values other than binary.
 
+My Progress & Debug Video: https://youtu.be/-r9TY5bYvdI
+
 
 ### Prasoon:
 
